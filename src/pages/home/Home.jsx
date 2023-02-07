@@ -1,7 +1,7 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { Button, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { style } from "./HomeStyle";
-
 
 export function Home({ navigation }){
     const [input, setInput] = useState('')
@@ -10,6 +10,11 @@ export function Home({ navigation }){
         navigation.navigate("Search", {
             text: input
         })
+    }
+
+    const logOut = async () =>{
+        await AsyncStorage.removeItem("isAuth")
+        navigation.navigate("Login")
     }
 
     return(
